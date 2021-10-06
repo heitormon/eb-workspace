@@ -7,14 +7,11 @@ services:
         volumes:
             - ./volumes/my.cnf:/etc/my.cnf
             - ./volumes/custom.cnf:/etc/mysql/conf.d/custom.cnf
+            - my-datavolume:/var/lib/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=abacate1
             - MYSQL_DATABASE=manager
         ports:
             - "3306:3306"
-    server:
-        container_name: dev-tomcat
-        image: tomcat:8.5.63
-        platform: linux/amd64
-        ports:
-            - "8080:8080"
+volumes:
+    my-datavolume:
